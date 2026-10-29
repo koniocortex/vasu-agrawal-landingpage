@@ -1,0 +1,584 @@
+/* baagh — personal site
+   Tokens follow the baagh brand: near-black ground, warm off-white text,
+   tiger orange (#F2A950, from the logo) as the only accent. */
+
+:root {
+  --ground: #141414;
+  --banner: #000000;
+  --surface: #1c1c1c;
+  --rule: #262626;
+  --text-strong: #edeae4;
+  --text: #e6e2db;
+  --text-soft: #d6d2cb;
+  --muted: #a8a49d;
+  --faint: #8c8880;
+  --accent: #f2a950;
+
+  --sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  --max: 1280px;
+  --gutter: clamp(16px, 5vw, 64px);
+  --col-gap: 32px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--accent);
+}
+
+a:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Underlined inline links (studio baagh, employers) */
+a.link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+a.link:hover,
+a.link:focus-visible {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+p,
+h1,
+h2,
+h3,
+ul,
+blockquote {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip:focus {
+  left: var(--gutter);
+  top: 16px;
+  z-index: 10;
+  background: var(--banner);
+  padding: 8px 12px;
+}
+
+/* ---------- Header ---------- */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 32px;
+}
+
+.nav-logo img {
+  height: 22px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  font-size: 13px;
+}
+
+.nav-links a {
+  color: var(--muted);
+}
+
+.nav-links a.is-strong {
+  color: var(--text);
+}
+
+/* ---------- Sections ---------- */
+
+.sec {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  row-gap: 24px;
+  padding: 88px 0;
+}
+
+.intro {
+  padding-top: 120px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--banner);
+}
+
+.avatar img {
+  width: 36px;
+  height: 36px;
+}
+
+.intro-copy {
+  max-width: 34em;
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.sec-first {
+  padding-top: 88px;
+}
+
+.sec-first .rows {
+  margin-top: 0;
+}
+
+.help-intro {
+  max-width: 36em;
+  margin-bottom: 40px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.name {
+  font-size: clamp(30px, 2.8vw, 38px);
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+}
+
+.sec-label {
+  grid-column: 1 / span 3;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--faint);
+}
+
+.sec-label-text {
+  font: inherit;
+  color: inherit;
+}
+
+.sec-label a {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.sec-body {
+  grid-column: 4 / span 9;
+}
+
+.about-copy {
+  max-width: 36em;
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+  color: var(--text-soft);
+}
+
+.about-copy + .about-copy {
+  margin-top: 20px;
+}
+
+/* Text rows: role / company / years, and project / line / sector.
+   A flat list with hairlines, in the spirit of pablostanley.com. */
+
+.rows {
+  margin-top: 56px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 160px;
+  column-gap: var(--col-gap);
+  row-gap: 4px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.row-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.row-mid {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.row-end {
+  font-size: 13px;
+  color: var(--faint);
+  text-align: right;
+}
+
+a.row:hover .row-title,
+a.row:focus-visible .row-title {
+  color: var(--accent);
+}
+
+/* Work and client rows: logo + name */
+
+.work-row,
+.client-row {
+  align-items: center;
+}
+
+.work-row .row-title,
+.client-row .row-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.row-logo {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--faint);
+  overflow: hidden;
+}
+
+/* Real logos sit unboxed, in their own colours; the box only frames the
+   initial-letter fallback. */
+.row-logo:has(img) {
+  border-color: transparent;
+  background: none;
+  overflow: visible;
+}
+
+.row-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 2px;
+}
+
+.arrow {
+  display: inline-block;
+  margin-left: -8px;
+  font-weight: 400;
+  color: var(--faint);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+a.org .arrow {
+  margin-left: 6px;
+}
+
+a.row:hover .arrow,
+a.row:focus-visible .arrow,
+a.org:hover .arrow,
+a.org:focus-visible .arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+/* Floating preview, positioned by script.js */
+
+.preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 320px;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  opacity: 0;
+  scale: 0.96;
+  transition: opacity 0.2s ease, scale 0.2s ease;
+}
+
+.preview.is-visible {
+  opacity: 1;
+  scale: 1;
+}
+
+.preview img,
+.preview video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.preview-empty {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  border-radius: inherit;
+  font-size: 13px;
+  color: var(--faint);
+}
+
+/* How I can help */
+
+.cols3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  row-gap: 36px;
+}
+
+.offer-title {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.offer-copy {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.tags {
+  margin-top: 48px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--faint);
+}
+
+/* Selected work */
+
+.work .rows,
+.clients .rows {
+  margin-top: 0;
+}
+
+/* Notes strip */
+
+.notes {
+  padding: 36px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+
+.notes .sec-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.notes p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.notes a {
+  font-size: 14px;
+}
+
+/* Contact + footer */
+
+.contact {
+  padding: 104px 0 48px;
+}
+
+.contact-line {
+  font-size: clamp(22px, 2vw, 26px);
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--text-strong);
+}
+
+.contact-mail {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.contact-mail:hover {
+  color: var(--text-strong);
+}
+
+.signoff {
+  margin-top: 56px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 88px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px;
+}
+
+.foot-links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.foot-links a {
+  color: var(--faint);
+}
+
+.foot-mark {
+  width: 26px;
+  height: 26px;
+}
+
+/* Oversized faint logotype, as at the foot of baaghdesign.co */
+.watermark {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.watermark img {
+  width: 100%;
+  height: auto;
+  opacity: 0.04;
+  filter: grayscale(1) brightness(2);
+  margin-bottom: -2%;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;
+  }
+
+  .intro {
+    padding-top: 64px;
+  }
+
+  .sec.sec-first {
+    padding-top: 40px;
+  }
+
+  .help-intro {
+    font-size: 17px;
+  }
+
+  .sec {
+    display: block;
+    padding: 64px 0;
+  }
+
+  .sec-label {
+    margin-bottom: 24px;
+  }
+
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .row-end {
+    text-align: left;
+  }
+
+  .work-row .row-mid,
+  .work-row .row-end,
+  .client-row .row-mid,
+  .client-row .row-end {
+    padding-left: 46px;
+  }
+
+  .cols3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-copy,
+  .intro-copy {
+    font-size: 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  a,
+  .arrow,
+  .preview {
+    transition: none;
+  }
+}
