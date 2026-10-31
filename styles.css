@@ -188,14 +188,6 @@ ul {
   margin-top: 0;
 }
 
-.help-intro {
-  max-width: 36em;
-  margin-bottom: 40px;
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--text-soft);
-}
-
 .name {
   font-size: clamp(30px, 2.8vw, 38px);
   line-height: 1.2;
@@ -283,6 +275,18 @@ a.row:focus-visible .row-title {
 .work-row,
 .client-row {
   align-items: center;
+}
+
+/* Name and line read as one phrase, domain pinned right */
+.work-row,
+.client-row {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  column-gap: 32px;
+}
+
+.work-row .row-end,
+.client-row .row-end {
+  padding-left: var(--col-gap);
 }
 
 .work-row .row-title,
@@ -384,7 +388,7 @@ a.org:focus-visible .arrow {
   color: var(--faint);
 }
 
-/* How I can help */
+/* What I do */
 
 .cols3 {
   display: grid;
@@ -506,16 +510,16 @@ a.org:focus-visible .arrow {
 
 /* Oversized faint logotype, as at the foot of baaghdesign.co */
 .watermark {
-  overflow: hidden;
+  padding-bottom: clamp(24px, 4vw, 64px);
   pointer-events: none;
 }
 
 .watermark img {
+  display: block;
   width: 100%;
   height: auto;
   opacity: 0.04;
   filter: grayscale(1) brightness(2);
-  margin-bottom: -2%;
 }
 
 /* ---------- Small screens ---------- */
@@ -531,10 +535,6 @@ a.org:focus-visible .arrow {
 
   .sec.sec-first {
     padding-top: 40px;
-  }
-
-  .help-intro {
-    font-size: 17px;
   }
 
   .sec {
