@@ -1,3 +1,19 @@
+// Header: hidden on load, slides in as soon as What I do enters the viewport.
+
+(() => {
+  const header = document.querySelector(".site-header");
+  const trigger = document.querySelector("#expertise");
+  if (!header || !trigger) return;
+
+  const update = () => {
+    header.classList.toggle("is-visible", trigger.getBoundingClientRect().top < innerHeight);
+  };
+
+  addEventListener("scroll", update, { passive: true });
+  addEventListener("resize", update);
+  update();
+})();
+
 // Floating preview for the Selected work rows.
 // Follows the cursor on devices that can hover; does nothing on touch.
 

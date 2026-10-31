@@ -9,24 +9,25 @@
   <link rel="icon" href="assets/tiger-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="wrap">
-      <nav class="nav" aria-label="Main">
-        <a class="nav-logo" href="#top" aria-label="baagh home"><img src="assets/baagh-logo.svg" alt="baagh" width="88" height="24"></a>
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#expertise">Expertise</a>
-          <a href="#work">Work</a>
-          <a href="#notes">Notes</a>
-          <a class="is-strong" href="#contact">Contact</a>
-        </div>
-      </nav>
+  <!-- Hidden on load; script.js reveals it once What I do enters the viewport. -->
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main">
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#expertise">What I do</a>
+        <a href="#work">Work</a>
+        <a href="#notes">Notes</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="nav-cta" href="https://baaghdesign.co" target="_blank" rel="noopener">studio baagh<span class="arrow" aria-hidden="true">↗</span></a>
+    </nav>
   </header>
 
   <main id="main" class="wrap">

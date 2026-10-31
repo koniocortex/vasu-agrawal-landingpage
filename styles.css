@@ -14,11 +14,12 @@
   --faint: #8c8880;
   --accent: #f2a950;
 
-  --sans: "Inter", system-ui, -apple-system, sans-serif;
+  --sans: "Geist", system-ui, -apple-system, sans-serif;
 
   --max: 1280px;
   --gutter: clamp(16px, 5vw, 64px);
   --col-gap: 32px;
+  --header-h: 72px;
 }
 
 *,
@@ -115,31 +116,68 @@ ul {
 
 /* ---------- Header ---------- */
 
+/* Fixed bar, hidden until the visitor scrolls past Experience. Stays
+   reachable by keyboard: focusing a link inside brings it in. */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  background: color-mix(in srgb, var(--ground) 92%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.site-header.is-visible,
+.site-header:focus-within {
+  transform: none;
+  opacity: 1;
+}
+
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding-top: 32px;
-}
-
-.nav-logo img {
-  height: 22px;
-  width: auto;
+  height: var(--header-h);
 }
 
 .nav-links {
   display: flex;
   gap: 32px;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .nav-links a {
   color: var(--muted);
 }
 
-.nav-links a.is-strong {
-  color: var(--text);
+.nav-links a:hover {
+  color: var(--text-strong);
+}
+
+.nav-cta {
+  flex: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.nav-cta .arrow {
+  margin-left: 4px;
+  color: inherit;
+}
+
+.nav-cta:hover {
+  color: var(--text-strong);
+}
+
+.sec,
+.intro {
+  scroll-margin-top: var(--header-h);
 }
 
 /* ---------- Sections ---------- */
@@ -153,7 +191,7 @@ ul {
 }
 
 .intro {
-  padding-top: 120px;
+  padding-top: 168px;
 }
 
 .avatar {
@@ -173,10 +211,10 @@ ul {
 }
 
 .intro-copy {
-  max-width: 34em;
+  max-width: 40em;
   margin-top: 16px;
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--text-soft);
 }
 
@@ -219,10 +257,9 @@ ul {
 }
 
 .about-copy {
-  max-width: 36em;
-  font-size: 18px;
-  line-height: 1.6;
-  letter-spacing: -0.005em;
+  max-width: 40em;
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--text-soft);
 }
 
@@ -525,12 +562,33 @@ a.org:focus-visible .arrow {
 /* ---------- Small screens ---------- */
 
 @media (max-width: 900px) {
+  :root {
+    --header-h: 56px;
+  }
+
+  .nav-links,
+  .nav-cta {
+    font-size: 14px;
+  }
+
+  /* Links scroll sideways rather than wrap; the CTA stays pinned right */
   .nav-links {
+    gap: 20px;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
     display: none;
   }
 
+  .nav-links a {
+    flex: none;
+  }
+
   .intro {
-    padding-top: 64px;
+    padding-top: 112px;
   }
 
   .sec.sec-first {
@@ -563,11 +621,6 @@ a.org:focus-visible .arrow {
 
   .cols3 {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .about-copy,
-  .intro-copy {
-    font-size: 17px;
   }
 }
 
