@@ -1,0 +1,348 @@
+/* studio baagh — case studies.
+   Read on a light ground; the footer returns to the studio's dark one.
+   Built from the shared .sec label/body grid, so it reads like the rest. */
+
+/* ---------- Light tokens ---------- */
+
+.cs {
+  --ground: #f4f1ec;
+  --surface: #ebe7e0;
+  --rule: #ddd8cf;
+  --text-strong: #141414;
+  --text: #1f1d1a;
+  --text-soft: #2e2b27;
+  --muted: #57534d;
+  --faint: #6b665f;
+  --accent: #b9600f; /* tiger orange, darkened to read as text on light */
+}
+
+.cs-dark {
+  --ground: #141414;
+  --rule: #262626;
+  --text-strong: #edeae4;
+  --text: #e6e2db;
+  --muted: #a8a49d;
+  --faint: #8c8880;
+  --accent: #f2a950;
+  background: var(--ground);
+  color: var(--text);
+  margin-top: 160px;
+}
+
+/* ---------- Title ---------- */
+
+.cs-head {
+  padding-top: calc(var(--header-h) + 88px);
+  padding-bottom: 56px;
+}
+
+.cs-back {
+  display: inline-block;
+  margin-bottom: 56px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.cs-client {
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.cs-title {
+  max-width: 18em;
+  font-size: clamp(36px, 4.6vw, 64px);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  color: var(--text-strong);
+}
+
+.cs-meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  row-gap: 24px;
+  margin: 64px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.cs-meta dt {
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: var(--faint);
+}
+
+.cs-meta dd {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text);
+}
+
+/* ---------- Text sections ---------- */
+
+.cs-sec {
+  padding: 120px 0 0;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.cs-copy {
+  max-width: 40em;
+}
+
+.cs-copy p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.cs-copy p + p,
+.cs-list + p {
+  margin-top: 20px;
+}
+
+.cs-copy .cs-lead {
+  margin-bottom: 28px;
+  font-size: clamp(22px, 2vw, 26px);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--text-strong);
+}
+
+.cs-list {
+  margin-top: 32px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cs-list li {
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+  font-size: 15px;
+  color: var(--text);
+}
+
+.cs-list + p {
+  margin-top: 32px;
+}
+
+.cs-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  row-gap: 40px;
+}
+
+.cs-stats > div {
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+
+.cs-stat {
+  margin-bottom: 12px;
+  font-size: clamp(48px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--text-strong);
+}
+
+.cs-stats p:not(.cs-stat) {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ---------- Images ---------- */
+
+.cs-fig {
+  margin: 0;
+}
+
+.wrap.cs-fig {
+  margin: 64px auto 0;
+}
+
+.cs-pair,
+.cs-grid {
+  margin-top: 64px;
+}
+
+.cs-fig img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  background: var(--surface);
+}
+
+.cs-fig figcaption {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Two images side by side, cropped to one height */
+.cs-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cs-pair img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.cs-pair .cs-fig {
+  aspect-ratio: 1;
+}
+
+.cs-pair-wide {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+.cs-pair-wide .cs-fig {
+  aspect-ratio: auto;
+  height: clamp(280px, 36vw, 520px);
+}
+
+.cs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 16px;
+  row-gap: 48px;
+}
+
+.cs-grid img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* ---------- Quote, next ---------- */
+
+.cs .s-quote {
+  padding-top: 160px;
+  padding-bottom: 40px;
+}
+
+.cs .s-quote p {
+  color: var(--muted);
+}
+
+.cs-next {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--col-gap);
+  margin-top: 160px;
+}
+
+.cs-next a {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.cs-next a:last-child {
+  text-align: right;
+}
+
+.cs-next-label {
+  font-size: 13px;
+  color: var(--faint);
+}
+
+.cs-next-title {
+  font-size: clamp(28px, 3.4vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--text-strong);
+  transition: color 0.2s ease;
+}
+
+.cs-next a:hover .cs-next-title {
+  color: var(--accent);
+}
+
+.cs-dark .s-footer {
+  padding-top: 160px;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 900px) {
+  .cs-head {
+    padding-top: calc(var(--header-h) + 48px);
+  }
+
+  .cs-back {
+    margin-bottom: 40px;
+  }
+
+  .cs-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 40px;
+  }
+
+  .cs-sec {
+    padding-top: 88px;
+  }
+
+  .cs-stats {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 24px;
+  }
+
+  .wrap.cs-fig {
+    margin-top: 40px;
+  }
+
+  .cs-pair,
+  .cs-grid {
+    margin-top: 40px;
+  }
+
+  .cs-pair,
+  .cs-pair-wide,
+  .cs-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .cs-pair-wide .cs-fig {
+    height: auto;
+  }
+
+  .cs-pair img {
+    height: auto;
+  }
+
+  .cs-pair .cs-fig {
+    aspect-ratio: auto;
+  }
+
+  .cs-grid {
+    row-gap: 32px;
+  }
+
+  .cs-next {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 32px;
+    margin-top: 104px;
+  }
+
+  .cs-next a:last-child {
+    text-align: left;
+  }
+
+  .cs-dark {
+    margin-top: 104px;
+  }
+
+  .cs-dark .s-footer {
+    padding-top: 104px;
+  }
+}

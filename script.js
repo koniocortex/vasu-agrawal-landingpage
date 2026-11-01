@@ -1,8 +1,9 @@
-// Header: hidden on load, slides in as soon as What I do enters the viewport.
+// Header: hidden on load, slides in as soon as a trigger section enters the
+// viewport. data-reveal names the trigger; it defaults to What I do.
 
 (() => {
-  const header = document.querySelector(".site-header");
-  const trigger = document.querySelector("#expertise");
+  const header = document.querySelector(".site-header[data-reveal]");
+  const trigger = header && document.querySelector(header.dataset.reveal || "#expertise");
   if (!header || !trigger) return;
 
   const update = () => {
@@ -19,7 +20,7 @@
 
 (() => {
   const preview = document.querySelector(".preview");
-  const rows = document.querySelectorAll(".work-row");
+  const rows = document.querySelectorAll(".work-row[data-preview]");
   if (!preview || !rows.length || !matchMedia("(hover: hover)").matches) return;
 
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;

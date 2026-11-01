@@ -116,7 +116,8 @@ ul {
 
 /* ---------- Header ---------- */
 
-/* Fixed bar, hidden until the visitor scrolls past Experience. Stays
+/* Fixed bar. With data-reveal it stays hidden until script.js shows it;
+   without, it is always visible. Stays
    reachable by keyboard: focusing a link inside brings it in. */
 .site-header {
   position: fixed;
@@ -131,6 +132,7 @@ ul {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+.site-header:not([data-reveal]),
 .site-header.is-visible,
 .site-header:focus-within {
   transform: none;
