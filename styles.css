@@ -193,7 +193,7 @@ ul {
 }
 
 .intro {
-  padding-top: 168px;
+  padding-top: 96px;
 }
 
 .avatar {
@@ -463,36 +463,72 @@ a.org:focus-visible .arrow {
   margin-top: 0;
 }
 
-/* Notes strip */
+/* "For more work, please reach out": the link copies the email */
 
-.notes {
-  padding: 36px 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  align-items: baseline;
-}
-
-.notes .sec-body {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.notes p {
+.more-note {
+  margin-top: 24px;
   font-size: 15px;
   color: var(--muted);
 }
 
-.notes a {
-  font-size: 14px;
+.copy-mail {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--faint);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
-/* Contact + footer */
+.copy-mail:hover,
+.copy-mail:focus-visible {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.copy-mail:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Confirmation bubble, set by script.js */
+.copy-mail::after {
+  content: attr(data-copied);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  translate: -50% 4px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--text-strong);
+  color: var(--ground);
+  font-size: 12px;
+  white-space: nowrap;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, translate 0.2s ease;
+}
+
+.copy-mail.is-copied::after {
+  opacity: 1;
+  translate: -50% 0;
+}
+
+/* Contact + footer: starts at the content's left edge, foot spans it */
 
 .contact {
   padding: 104px 0 48px;
+}
+
+.contact-body {
+  grid-column: 1 / -1;
 }
 
 .contact-line {
@@ -514,18 +550,9 @@ a.org:focus-visible .arrow {
   color: var(--text-strong);
 }
 
-.signoff {
-  margin-top: 56px;
-  font-size: 15px;
-  color: var(--muted);
-}
-
 .foot {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 24px;
+  justify-content: flex-end;
   margin-top: 88px;
   padding-top: 24px;
   border-top: 1px solid var(--rule);
@@ -540,11 +567,6 @@ a.org:focus-visible .arrow {
 
 .foot-links a {
   color: var(--faint);
-}
-
-.foot-mark {
-  width: 26px;
-  height: 26px;
 }
 
 /* Oversized faint logotype, as at the foot of baaghdesign.co */
@@ -590,7 +612,7 @@ a.org:focus-visible .arrow {
   }
 
   .intro {
-    padding-top: 112px;
+    padding-top: 64px;
   }
 
   .sec.sec-first {

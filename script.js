@@ -7,7 +7,9 @@
   if (!header || !trigger) return;
 
   const update = () => {
-    header.classList.toggle("is-visible", trigger.getBoundingClientRect().top < innerHeight);
+    // Never on load: only once the visitor has started scrolling
+    const inView = trigger.getBoundingClientRect().top < innerHeight;
+    header.classList.toggle("is-visible", scrollY > 0 && inView);
   };
 
   addEventListener("scroll", update, { passive: true });
@@ -93,3 +95,23 @@
     });
   });
 })();
+
+// "Reach out" copies the email address and confirms in a small bubble.
+// Falls back to opening the mail app if the clipboard is unavailable.
+
+document.querySelectorAll(".copy-mail").forEach((btn) => {
+  let timer;
+  btn.addEventListener("click", async () => {
+    const email = btn.dataset.email;
+    try {
+      await navigator.clipboard.writeText(email);
+      btn.dataset.copied = `Copied ${email}`;
+    } catch {
+      location.href = `mailto:${email}`;
+      return;
+    }
+    btn.classList.add("is-copied");
+    clearTimeout(timer);
+    timer = setTimeout(() => btn.classList.remove("is-copied"), 2000);
+  });
+});
